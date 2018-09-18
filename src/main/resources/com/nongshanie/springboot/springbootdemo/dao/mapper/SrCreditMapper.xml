@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nongshanie.springboot.springbootdemo.dao.mapper.SrCreditMapper" >
+  <resultMap id="BaseResultMap" type="com.nongshanie.springboot.springbootdemo.dao.model.SrCredit" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sruid" property="sruid" jdbcType="INTEGER" />
+    <result column="out_userid" property="outUserid" jdbcType="VARCHAR" />
+    <result column="credit_sn" property="creditSn" jdbcType="VARCHAR" />
+    <result column="product_code" property="productCode" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="credit_remark" property="creditRemark" jdbcType="VARCHAR" />
+    <result column="credit_operator_no" property="creditOperatorNo" jdbcType="VARCHAR" />
+    <result column="credit_result" property="creditResult" jdbcType="VARCHAR" />
+    <result column="credit_time" property="creditTime" jdbcType="INTEGER" />
+    <result column="channel" property="channel" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sruid, out_userid, credit_sn, product_code, amount, remark, credit_remark, credit_operator_no, 
+    credit_result, credit_time, channel, status, version
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sr_credit
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sr_credit
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nongshanie.springboot.springbootdemo.dao.model.SrCredit" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sr_credit (sruid, out_userid, credit_sn, 
+      product_code, amount, remark, 
+      credit_remark, credit_operator_no, credit_result, 
+      credit_time, channel, status, 
+      version
+      )
+    values (#{sruid,jdbcType=INTEGER}, #{outUserid,jdbcType=VARCHAR}, #{creditSn,jdbcType=VARCHAR}, 
+      #{productCode,jdbcType=VARCHAR}, #{amount,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{creditRemark,jdbcType=VARCHAR}, #{creditOperatorNo,jdbcType=VARCHAR}, #{creditResult,jdbcType=VARCHAR}, 
+      #{creditTime,jdbcType=INTEGER}, #{channel,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{version,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.nongshanie.springboot.springbootdemo.dao.model.SrCredit" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sr_credit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sruid != null" >
+        sruid,
+      </if>
+      <if test="outUserid != null" >
+        out_userid,
+      </if>
+      <if test="creditSn != null" >
+        credit_sn,
+      </if>
+      <if test="productCode != null" >
+        product_code,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="creditRemark != null" >
+        credit_remark,
+      </if>
+      <if test="creditOperatorNo != null" >
+        credit_operator_no,
+      </if>
+      <if test="creditResult != null" >
+        credit_result,
+      </if>
+      <if test="creditTime != null" >
+        credit_time,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sruid != null" >
+        #{sruid,jdbcType=INTEGER},
+      </if>
+      <if test="outUserid != null" >
+        #{outUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="creditSn != null" >
+        #{creditSn,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null" >
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="creditRemark != null" >
+        #{creditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="creditOperatorNo != null" >
+        #{creditOperatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="creditResult != null" >
+        #{creditResult,jdbcType=VARCHAR},
+      </if>
+      <if test="creditTime != null" >
+        #{creditTime,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nongshanie.springboot.springbootdemo.dao.model.SrCredit" >
+    update sr_credit
+    <set >
+      <if test="sruid != null" >
+        sruid = #{sruid,jdbcType=INTEGER},
+      </if>
+      <if test="outUserid != null" >
+        out_userid = #{outUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="creditSn != null" >
+        credit_sn = #{creditSn,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null" >
+        product_code = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="creditRemark != null" >
+        credit_remark = #{creditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="creditOperatorNo != null" >
+        credit_operator_no = #{creditOperatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="creditResult != null" >
+        credit_result = #{creditResult,jdbcType=VARCHAR},
+      </if>
+      <if test="creditTime != null" >
+        credit_time = #{creditTime,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nongshanie.springboot.springbootdemo.dao.model.SrCredit" >
+    update sr_credit
+    set sruid = #{sruid,jdbcType=INTEGER},
+      out_userid = #{outUserid,jdbcType=VARCHAR},
+      credit_sn = #{creditSn,jdbcType=VARCHAR},
+      product_code = #{productCode,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      credit_remark = #{creditRemark,jdbcType=VARCHAR},
+      credit_operator_no = #{creditOperatorNo,jdbcType=VARCHAR},
+      credit_result = #{creditResult,jdbcType=VARCHAR},
+      credit_time = #{creditTime,jdbcType=INTEGER},
+      channel = #{channel,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
